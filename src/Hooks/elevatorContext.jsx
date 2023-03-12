@@ -30,16 +30,16 @@ export const ElevatorProvider = (props) => {
         for (let i = 0; i < elevatorsState.length; i++) {
             arr.push(Math.abs(elevatorsState[i].position - floorNumberCalled));
         }
-        let indexMenor = arr.indexOf(Math.min(...arr));
+        const indexMenor = arr.indexOf(Math.min(...arr));
         return elevatorsState[indexMenor];
     }
     const callElevator = (floorNumberCalled) => {
-        let wq = closestElevator(floorNumberCalled);
+        const closestElv = closestElevator(floorNumberCalled);
         setElevatorsState(s => {
             const newArr = s.slice();
-            newArr[wq.id].inAction = true;
-            newArr[wq.id].pastPosition = newArr[wq.id].position;
-            newArr[wq.id].position = floorNumberCalled;
+            newArr[closestElv.id].inAction = true;
+            newArr[closestElv.id].pastPosition = newArr[closestElv.id].position;
+            newArr[closestElv.id].position = floorNumberCalled;
 
             return newArr;
         })
@@ -47,12 +47,12 @@ export const ElevatorProvider = (props) => {
             const newArr = s.slice();
             newArr[floorNumberCalled].isElv = true;
             newArr[floorNumberCalled].isCalled = true;
-            const index = newArr[elevatorsState[wq.id].pastPosition].elevatorId.indexOf(wq.id)
+            const index = newArr[elevatorsState[closestElv.id].pastPosition].elevatorId.indexOf(closestElv.id)
             if (index > -1) {
-                newArr[elevatorsState[wq.id].pastPosition].elevatorId.splice(index, 1);
+                newArr[elevatorsState[closestElv.id].pastPosition].elevatorId.splice(index, 1);
             }
-            if (!newArr[floorNumberCalled].elevatorId.includes(wq.id)) {
-                newArr[floorNumberCalled].elevatorId.push(wq.id)
+            if (!newArr[floorNumberCalled].elevatorId.includes(closestElv.id)) {
+                newArr[floorNumberCalled].elevatorId.push(closestElv.id)
             }
             return newArr;
         });
