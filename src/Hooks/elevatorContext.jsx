@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react';
+import Queue from "./Queue.js";
 let counter = 0;
 
 const ElevatorContext = createContext();
@@ -26,52 +27,67 @@ export const ElevatorProvider = (props) => {
         { id: 4, position: 0, pastPosition: 0, inAction: false, EstimatedTimeArrival: 0, arrivalTime: 0 }
     ])
 
+    const setTheNewElevatorValues = (positionOfClosestElv, floorNumberCalled, closestElv) => {
+        setElevatorsState(s => {
+            const newArr = s.slice();
+            newArr[closestElv.id].inAction = true;
+            newArr[closestElv.id].pastPosition = positionOfClosestElv;
+            newArr[closestElv.id].position = floorNumberCalled;
+            newArr[closestElv.id].EstimatedTimeArrival = Math.abs(floorNumberCalled - newArr[closestElv.id].pastPosition) * 2;
+            newArr[closestElv.id].arrivalTime = Date.now() + (1000 * (Math.abs(floorNumberCalled - newArr[closestElv.id].pastPosition) * 2));
+            return newArr;
+        })
+    }
+    const setTheNewFloorValues = (floorNumberCalled, closestElv) => {
+        setFloorsState(s => {
+            const newArr = s.slice();
+            newArr[floorNumberCalled].isElv = true;
+            newArr[floorNumberCalled].isCalled = true;
+            const index = newArr[elevatorsState[closestElv.id].pastPosition].elevatorId.indexOf(closestElv.id)
+            if (index > -1) {
+                newArr[elevatorsState[closestElv.id].pastPosition].elevatorId.splice(index, 1);
+            }
+            if (!newArr[floorNumberCalled].elevatorId.includes(closestElv.id)) {
+                newArr[floorNumberCalled].elevatorId.push(closestElv.id)
+            }
+            return newArr;
+        });
+    }
     const closestElevator = (floorNumberCalled) => {
         const elevatorsOccupied = elevatorsState.filter(elv => elv.inAction);
         if (elevatorsOccupied.length === 5) {
             return null;
         } else {
-            let arr = [];
-            for (let i = 0; i < elevatorsState.length; i++) {
-                if (elevatorsState[i].inAction) {
-                    arr.push(10);
-                } else {
-                    arr.push(Math.abs(elevatorsState[i].position - floorNumberCalled));
+            if (floorsState[floorNumberCalled].elevatorId.length === 0) {
+                let arr = [];
+                for (let i = 0; i < elevatorsState.length; i++) {
+                    if (elevatorsState[i].inAction) {
+                        arr.push(10);
+                    } else {
+                        arr.push(Math.abs(elevatorsState[i].position - floorNumberCalled));
+                    }
                 }
+                const indexMenor = arr.indexOf(Math.min(...arr));
+                return elevatorsState[indexMenor];
+            } else {
+                return elevatorsState[floorsState[floorNumberCalled].elevatorId[0]];
             }
-            const indexMenor = arr.indexOf(Math.min(...arr));
-            return elevatorsState[indexMenor];
         }
     }
     const callElevator = (floorNumberCalled) => {
         const closestElv = closestElevator(floorNumberCalled);
         if (closestElv !== null) {
             const positionOfClosestElv = closestElv.position;
-            setElevatorsState(s => {
-                const newArr = s.slice();
-                newArr[closestElv.id].inAction = true;
-                newArr[closestElv.id].pastPosition = positionOfClosestElv;
-                newArr[closestElv.id].position = floorNumberCalled;
-                newArr[closestElv.id].EstimatedTimeArrival = Math.abs(floorNumberCalled - newArr[closestElv.id].pastPosition) * 2;
-                newArr[closestElv.id].arrivalTime = Date.now() + (1000 * (Math.abs(floorNumberCalled - newArr[closestElv.id].pastPosition) * 2));
-                return newArr;
-            })
-            setFloorsState(s => {
-                const newArr = s.slice();
-                newArr[floorNumberCalled].isElv = true;
-                newArr[floorNumberCalled].isCalled = true;
-                const index = newArr[elevatorsState[closestElv.id].pastPosition].elevatorId.indexOf(closestElv.id)
-                if (index > -1) {
-                    newArr[elevatorsState[closestElv.id].pastPosition].elevatorId.splice(index, 1);
-                }
-                if (!newArr[floorNumberCalled].elevatorId.includes(closestElv.id)) {
-                    newArr[floorNumberCalled].elevatorId.push(closestElv.id)
-                }
-                return newArr;
-            });
-            console.log("elevatorsState++++", elevatorsState);
+            setTheNewElevatorValues(positionOfClosestElv, floorNumberCalled, closestElv);
+            setTheNewFloorValues(floorNumberCalled, closestElv);
         } else {
             console.log("null get here");
+            // const cars = new Queue();
+            // cars.enqueue("Honda");
+            // cars.enqueue("Toyota");
+            // cars.enqueue("Mazda");
+
+            // console.log(cars.dequeue());
         }
 
     }
@@ -99,7 +115,7 @@ export const ElevatorProvider = (props) => {
                     newArr[i].arrivalTime = 0;
                     return newArr;
                 })
-                // console.log("elevatorsState", elevatorsState);
+                console.log("elevatorsState", elevatorsState);
             }
         }
     }, 500)
