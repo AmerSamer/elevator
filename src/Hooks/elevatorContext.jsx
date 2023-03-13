@@ -1,6 +1,6 @@
 import { createContext, useState } from 'react';
 import Queue from "./Queue.js";
-let counter = 0;
+const queue = new Queue();
 
 const ElevatorContext = createContext();
 
@@ -8,16 +8,16 @@ const ElevatorContext = createContext();
 export const ElevatorProvider = (props) => {
     const [value, setValue] = useState("test")
     const [floorsState, setFloorsState] = useState([
-        { isElv: true, position: 0, isCalled: false, elevatorId: [0, 1, 2, 3, 4] },
-        { isElv: false, position: 1, isCalled: false, elevatorId: [] },
-        { isElv: false, position: 2, isCalled: false, elevatorId: [] },
-        { isElv: false, position: 3, isCalled: false, elevatorId: [] },
-        { isElv: false, position: 4, isCalled: false, elevatorId: [] },
-        { isElv: false, position: 5, isCalled: false, elevatorId: [] },
-        { isElv: false, position: 6, isCalled: false, elevatorId: [] },
-        { isElv: false, position: 7, isCalled: false, elevatorId: [] },
-        { isElv: false, position: 8, isCalled: false, elevatorId: [] },
-        { isElv: false, position: 9, isCalled: false, elevatorId: [] },
+        { isElv: true, position: 0, isCalled: false, isArrived: false, elevatorId: [0, 1, 2, 3, 4] },
+        { isElv: false, position: 1, isCalled: false, isArrived: false, elevatorId: [] },
+        { isElv: false, position: 2, isCalled: false, isArrived: false, elevatorId: [] },
+        { isElv: false, position: 3, isCalled: false, isArrived: false, elevatorId: [] },
+        { isElv: false, position: 4, isCalled: false, isArrived: false, elevatorId: [] },
+        { isElv: false, position: 5, isCalled: false, isArrived: false, elevatorId: [] },
+        { isElv: false, position: 6, isCalled: false, isArrived: false, elevatorId: [] },
+        { isElv: false, position: 7, isCalled: false, isArrived: false, elevatorId: [] },
+        { isElv: false, position: 8, isCalled: false, isArrived: false, elevatorId: [] },
+        { isElv: false, position: 9, isCalled: false, isArrived: false, elevatorId: [] },
     ])
     const [elevatorsState, setElevatorsState] = useState([
         { id: 0, position: 0, pastPosition: 0, inAction: false, EstimatedTimeArrival: 0, arrivalTime: 0 },
@@ -74,32 +74,32 @@ export const ElevatorProvider = (props) => {
             }
         }
     }
-    const callElevator = (floorNumberCalled) => {
-        const closestElv = closestElevator(floorNumberCalled);
-        if (closestElv !== null) {
-            const positionOfClosestElv = closestElv.position;
-            setTheNewElevatorValues(positionOfClosestElv, floorNumberCalled, closestElv);
-            setTheNewFloorValues(floorNumberCalled, closestElv);
-        } else {
-            console.log("null get here");
-            // const cars = new Queue();
-            // cars.enqueue("Honda");
-            // cars.enqueue("Toyota");
-            // cars.enqueue("Mazda");
-
-            // console.log(cars.dequeue());
+    const callElevator = (floorNumberCalledd) => {
+        let floorNumberCalled = floorNumberCalledd;
+        if (floorNumberCalled !== -1) {
+            queue.enqueue(floorNumberCalled);
         }
-
-    }
-    const checkElevatorstate = () => {
-        floorsState.map((floor) => {
-            if (floor.isCalled) {
-                if (!floor.isElv) {
-                    callElevator(floor.position)
-                }
+        if (!queue.isEmpty()) {
+            const closestElv = closestElevator(queue.peek());
+            if (closestElv !== null) {
+                const positionOfClosestElv = closestElv.position;
+                setTheNewElevatorValues(positionOfClosestElv, queue.peek(), closestElv);
+                setTheNewFloorValues(queue.peek(), closestElv);
+                queue.dequeue();
+            } else {
+                console.log("null get here");
             }
-        })
+        }
     }
+    // const checkElevatorstate = () => {
+    //     floorsState.map((floor) => {
+    //         if (floor.isCalled) {
+    //             if (!floor.isElv) {
+    //                 callElevator(floor.position)
+    //             }
+    //         }
+    //     })
+    // }
 
     // A method that runs every half second and checks if there are elevators 
     // that have reached the requested floor 
@@ -115,13 +115,23 @@ export const ElevatorProvider = (props) => {
                     newArr[i].arrivalTime = 0;
                     return newArr;
                 })
-                console.log("elevatorsState", elevatorsState);
+                const rtrt = floorsState.filter(f => f.elevatorId[0] === i);
+                setFloorsState(s => {
+                    const newArr = s.slice();
+                    newArr[rtrt[0].position].isArrived = true;
+                    console.log("newArr", newArr);
+                    return newArr;
+                })
             }
         }
     }, 500)
 
+    setTimeout(() => {
+        callElevator(-1);
+    }, 1000)
+
     return (
-        <ElevatorContext.Provider value={{ value, floorsState, elevatorsState, callElevator, checkElevatorstate }}>
+        <ElevatorContext.Provider value={{ value, floorsState, elevatorsState, callElevator }}>
             {props.children}
         </ElevatorContext.Provider>
     );
