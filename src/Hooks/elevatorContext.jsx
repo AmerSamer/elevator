@@ -10,11 +10,11 @@ export const ElevatorProvider = (props) => {
     const [value, setValue] = useState("test")
     const [audio, setAudio] = useState(null);
     const [floorsState, setFloorsState] = useState([
-        { isElv: true, position: 0, isCalled: false, isArrived: false, elevatorId: [0, 1, 2, 3, 4] },
-        { isElv: false, position: 1, isCalled: false, isArrived: false, elevatorId: [] },
-        { isElv: false, position: 2, isCalled: false, isArrived: false, elevatorId: [] },
-        { isElv: false, position: 3, isCalled: false, isArrived: false, elevatorId: [] },
-        { isElv: false, position: 4, isCalled: false, isArrived: false, elevatorId: [] },
+        { isElv: true, position: 0, isCalled: false, isArrived: false, elevatorId: [0] },
+        { isElv: true, position: 1, isCalled: false, isArrived: false, elevatorId: [1] },
+        { isElv: true, position: 2, isCalled: false, isArrived: false, elevatorId: [2] },
+        { isElv: true, position: 3, isCalled: false, isArrived: false, elevatorId: [3] },
+        { isElv: true, position: 4, isCalled: false, isArrived: false, elevatorId: [4] },
         { isElv: false, position: 5, isCalled: false, isArrived: false, elevatorId: [] },
         { isElv: false, position: 6, isCalled: false, isArrived: false, elevatorId: [] },
         { isElv: false, position: 7, isCalled: false, isArrived: false, elevatorId: [] },
@@ -23,10 +23,10 @@ export const ElevatorProvider = (props) => {
     ])
     const [elevatorsState, setElevatorsState] = useState([
         { id: 0, position: 0, pastPosition: 0, inAction: false, EstimatedTimeArrival: 0, arrivalTime: 0 },
-        { id: 1, position: 0, pastPosition: 0, inAction: false, EstimatedTimeArrival: 0, arrivalTime: 0 },
-        { id: 2, position: 0, pastPosition: 0, inAction: false, EstimatedTimeArrival: 0, arrivalTime: 0 },
-        { id: 3, position: 0, pastPosition: 0, inAction: false, EstimatedTimeArrival: 0, arrivalTime: 0 },
-        { id: 4, position: 0, pastPosition: 0, inAction: false, EstimatedTimeArrival: 0, arrivalTime: 0 }
+        { id: 1, position: 1, pastPosition: 1, inAction: false, EstimatedTimeArrival: 0, arrivalTime: 0 },
+        { id: 2, position: 2, pastPosition: 2, inAction: false, EstimatedTimeArrival: 0, arrivalTime: 0 },
+        { id: 3, position: 3, pastPosition: 3, inAction: false, EstimatedTimeArrival: 0, arrivalTime: 0 },
+        { id: 4, position: 4, pastPosition: 4, inAction: false, EstimatedTimeArrival: 0, arrivalTime: 0 }
     ])
 
     const playSound = (src) => {
