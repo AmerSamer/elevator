@@ -1,27 +1,8 @@
-import { useContext, useEffect, useLayoutEffect, useState } from "react"
+import { useContext} from "react"
 import ElevatorContext from '../Hooks/elevatorContext'
-import { Howl, Howler } from "howler";
-import arrivedSound from '../Sounds/arrivedSound.wav'
 
 function ButtonsGroup() {
     const { callElevator, floorsState } = useContext(ElevatorContext)
-    const [audio, setAudio] = useState(null);
-    
-    const playSound = (src) => {
-        setAudio(new Howl({ src }));
-    };
-    useEffect(() => {
-        floorsState.map(floor => {
-            if (floor.isArrived) {
-                playSound(arrivedSound);
-            }
-        })
-    }, [floorsState])
-    useLayoutEffect(() => {
-        if (audio) {
-            audio.play();
-        }
-    }, [audio]);
 
     return (<>
         <button onClick={() => callElevator(9)} disabled={floorsState[9].isCalled ? true : false} className={(!floorsState[9].isCalled && !floorsState[9].isArrived) ? 'btn btn-success m-1' : (floorsState[9].isArrived) ? 'btn btn-outline-success m-1' : 'btn btn-danger m-1'} >{(!floorsState[9].isCalled && !floorsState[9].isArrived) ? 'Call' : (floorsState[9].isArrived) ? 'Arrived' : 'Waiting'}</button>

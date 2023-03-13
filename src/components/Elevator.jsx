@@ -4,9 +4,6 @@ import ElevatorContext from "../Hooks/elevatorContext"
 function Elevator(props) {
     const elvId = props.attr;
     const { value, floorsState, elevatorsState, callElevator } = useContext(ElevatorContext)
-    // useEffect(() => {
-    //     checkElevatorstate()
-    // }, [callElevator])
 
     return (<>
         <div>

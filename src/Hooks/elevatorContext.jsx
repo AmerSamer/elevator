@@ -1,12 +1,14 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useLayoutEffect } from 'react';
+import { Howl, Howler } from "howler";
+import arrivedSound from '../Sounds/arrivedSound.wav'
 import Queue from "./Queue.js";
 const queue = new Queue();
 
 const ElevatorContext = createContext();
 
-
 export const ElevatorProvider = (props) => {
     const [value, setValue] = useState("test")
+    const [audio, setAudio] = useState(null);
     const [floorsState, setFloorsState] = useState([
         { isElv: true, position: 0, isCalled: false, isArrived: false, elevatorId: [0, 1, 2, 3, 4] },
         { isElv: false, position: 1, isCalled: false, isArrived: false, elevatorId: [] },
@@ -26,6 +28,15 @@ export const ElevatorProvider = (props) => {
         { id: 3, position: 0, pastPosition: 0, inAction: false, EstimatedTimeArrival: 0, arrivalTime: 0 },
         { id: 4, position: 0, pastPosition: 0, inAction: false, EstimatedTimeArrival: 0, arrivalTime: 0 }
     ])
+
+    const playSound = (src) => {
+        setAudio(new Howl({ src }));
+    };
+    useLayoutEffect(() => {
+        if (audio) {
+            audio.play();
+        }
+    }, [audio]);
 
     const setTheNewElevatorValues = (positionOfClosestElv, floorNumberCalled, closestElv) => {
         setElevatorsState(s => {
@@ -91,15 +102,6 @@ export const ElevatorProvider = (props) => {
             }
         }
     }
-    // const checkElevatorstate = () => {
-    //     floorsState.map((floor) => {
-    //         if (floor.isCalled) {
-    //             if (!floor.isElv) {
-    //                 callElevator(floor.position)
-    //             }
-    //         }
-    //     })
-    // }
 
     // A method that runs every half second and checks if there are elevators 
     // that have reached the requested floor 
@@ -119,6 +121,7 @@ export const ElevatorProvider = (props) => {
                 setFloorsState(s => {
                     const newArr = s.slice();
                     newArr[floor[0].position].isArrived = true;
+                    playSound(arrivedSound);
                     return newArr;
                 })
                 setTimeout(() => {
