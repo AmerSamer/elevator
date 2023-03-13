@@ -115,13 +115,20 @@ export const ElevatorProvider = (props) => {
                     newArr[i].arrivalTime = 0;
                     return newArr;
                 })
-                const rtrt = floorsState.filter(f => f.elevatorId[0] === i);
+                const floor = floorsState.filter(f => f.elevatorId[0] === i);
                 setFloorsState(s => {
                     const newArr = s.slice();
-                    newArr[rtrt[0].position].isArrived = true;
-                    console.log("newArr", newArr);
+                    newArr[floor[0].position].isArrived = true;
                     return newArr;
                 })
+                setTimeout(() => {
+                    setFloorsState(s => {
+                        const newArr = s.slice();
+                        newArr[floor[0].position].isArrived = false;
+                        newArr[floor[0].position].isCalled = false;
+                        return newArr;
+                    })
+                }, 2000);
             }
         }
     }, 500)
