@@ -9,8 +9,8 @@ function App() {
   return (
     <>
     <ElevatorProvider>
-      <div className="container text-center">
-        <div className='row'>
+      <div className="text-center">
+        <div id="app-main" className='row w-75 text-center'>
         <div className='col-1'>
             <p>9th</p>
             <p>8th</p>
