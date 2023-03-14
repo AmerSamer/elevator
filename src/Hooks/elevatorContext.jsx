@@ -112,7 +112,6 @@ export const ElevatorProvider = (props) => {
             if (Date.now() - elevatorsState[i].arrivalTime > 0 && Date.now() - elevatorsState[i].arrivalTime < 1001) {
                 setElevatorsState(s => {
                     const newArr = s.slice();
-                    newArr[i].inAction = false;
                     newArr[i].EstimatedTimeArrival = 0;
                     newArr[i].arrivalTime = 0;
                     return newArr;
@@ -125,6 +124,11 @@ export const ElevatorProvider = (props) => {
                     return newArr;
                 })
                 setTimeout(() => {
+                    setElevatorsState(s => {
+                        const newArr = s.slice();
+                        newArr[i].inAction = false;
+                        return newArr;
+                    })
                     setFloorsState(s => {
                         const newArr = s.slice();
                         newArr[floor[0].position].isArrived = false;
