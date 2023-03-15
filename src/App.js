@@ -1,8 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import Elevator from './components/Elevator';
 import { ElevatorProvider } from './Hooks/elevatorContext';
-import { useContext } from 'react';
 import ButtonsGroup from './components/ButtonsGroup';
 
 function App() {
@@ -10,7 +8,7 @@ function App() {
     <>
       <ElevatorProvider>
         <div className="text-center">
-          <div className='mt-3'><h1>Elevator Exercise</h1> </div>
+          <div className='mt-3'><h4>Elevator Exercise</h4></div>
           <div id="app-main" className='row w-75 text-center'>
             <div className='col-1 fw-bold mt-5'>
               <p className='mb-4'>9th</p>

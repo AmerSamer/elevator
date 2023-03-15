@@ -5,7 +5,7 @@ import './elevator.css';
 
 function Elevator(props) {
     const elvId = props.attr;
-    const { floorsState, elevatorsState } = useContext(ElevatorContext)
+    const { floorsState, elevatorsState } = useContext(ElevatorContext);
 
     const elevatorAnimation = (estimatedTimeArrival, position, pastPosition) => {
         if (position > pastPosition) {
