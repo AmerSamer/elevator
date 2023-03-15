@@ -1,5 +1,5 @@
 import { createContext, useState, useLayoutEffect } from 'react';
-import { Howl, Howler } from "howler";
+import { Howl } from "howler";
 import arrivedSound from '../Sounds/arrivedSound.wav'
 import Queue from "./Queue.js";
 const queue = new Queue();
@@ -7,7 +7,6 @@ let flag = 1;
 const ElevatorContext = createContext();
 
 export const ElevatorProvider = (props) => {
-    const [value, setValue] = useState("test")
     const [audio, setAudio] = useState(null);
     const [floorsState, setFloorsState] = useState([
         { isElv: true, position: 0, isCalled: false, isArrived: false, elevatorId: [0] },
@@ -70,7 +69,7 @@ export const ElevatorProvider = (props) => {
             return null;
         } else {
             if (floorsState[floorNumberCalled].elevatorId.length === 0) {
-                let arr = [];
+                const arr = [];
                 for (let i = 0; i < elevatorsState.length; i++) {
                     if (elevatorsState[i].inAction) {
                         arr.push(10);
@@ -85,14 +84,17 @@ export const ElevatorProvider = (props) => {
             }
         }
     }
+    const setFloorIsCalledAsTrue = (floorNumberCalled) => {
+        setFloorsState(s => {
+            const newArr = s.slice();
+            newArr[floorNumberCalled].isCalled = true;
+            return newArr;
+        });
+    }
     const callElevator = (floorNumberCalledd) => {
         let floorNumberCalled = floorNumberCalledd;
         if (floorNumberCalled !== -1) {
-            setFloorsState(s => {
-                const newArr = s.slice();
-                newArr[floorNumberCalledd].isCalled = true;
-                return newArr;
-            });
+            setFloorIsCalledAsTrue(floorNumberCalled);
             queue.enqueue(floorNumberCalled);
         }
         if (!queue.isEmpty()) {
@@ -102,8 +104,6 @@ export const ElevatorProvider = (props) => {
                 setTheNewElevatorValues(positionOfClosestElv, queue.peek(), closestElv);
                 setTheNewFloorValues(queue.peek(), closestElv);
                 queue.dequeue();
-            } else {
-                console.log("null get here");
             }
         }
     }
@@ -155,7 +155,7 @@ export const ElevatorProvider = (props) => {
     }, 10)
 
     return (
-        <ElevatorContext.Provider value={{ value, floorsState, elevatorsState, callElevator }}>
+        <ElevatorContext.Provider value={{ floorsState, elevatorsState, callElevator }}>
             {props.children}
         </ElevatorContext.Provider>
     );
