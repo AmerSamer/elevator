@@ -3,7 +3,7 @@ import { Howl, Howler } from "howler";
 import arrivedSound from '../Sounds/arrivedSound.wav'
 import Queue from "./Queue.js";
 const queue = new Queue();
-
+let flag = 1;
 const ElevatorContext = createContext();
 
 export const ElevatorProvider = (props) => {
@@ -72,7 +72,6 @@ export const ElevatorProvider = (props) => {
             if (floorsState[floorNumberCalled].elevatorId.length === 0) {
                 let arr = [];
                 for (let i = 0; i < elevatorsState.length; i++) {
-                    console.log("elevatorsState[i]",elevatorsState[i]);
                     if (elevatorsState[i].inAction) {
                         arr.push(10);
                     } else {
@@ -147,8 +146,13 @@ export const ElevatorProvider = (props) => {
     }, 500)
 
     setTimeout(() => {
-        callElevator(-1);
-    }, 1000)
+        if (flag === 1) {
+            callElevator(-1);
+            flag++;
+        } else {
+            flag = 1;
+        }
+    }, 10)
 
     return (
         <ElevatorContext.Provider value={{ value, floorsState, elevatorsState, callElevator }}>
