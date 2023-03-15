@@ -88,6 +88,11 @@ export const ElevatorProvider = (props) => {
     const callElevator = (floorNumberCalledd) => {
         let floorNumberCalled = floorNumberCalledd;
         if (floorNumberCalled !== -1) {
+            setFloorsState(s => {
+                const newArr = s.slice();
+                newArr[floorNumberCalledd].isCalled = true;
+                return newArr;
+            });
             queue.enqueue(floorNumberCalled);
         }
         if (!queue.isEmpty()) {
