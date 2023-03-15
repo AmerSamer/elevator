@@ -72,6 +72,7 @@ export const ElevatorProvider = (props) => {
             if (floorsState[floorNumberCalled].elevatorId.length === 0) {
                 let arr = [];
                 for (let i = 0; i < elevatorsState.length; i++) {
+                    console.log("elevatorsState[i]",elevatorsState[i]);
                     if (elevatorsState[i].inAction) {
                         arr.push(10);
                     } else {
