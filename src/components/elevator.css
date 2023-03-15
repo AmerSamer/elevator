@@ -1,0 +1,477 @@
+
+.vert-move-0 {
+    -webkit-animation: mover0 0s infinite alternate;
+    animation: mover0 0s infinite alternate;
+}
+
+@-webkit-keyframes mover0 {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover0 {
+    0% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vert-move-2-up {
+    -webkit-animation: mover2 2s infinite alternate;
+    animation: mover2 2s infinite alternate;
+}
+
+@-webkit-keyframes mover2 {
+    0% {
+        transform: translateY(2px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover2 {
+    0% {
+        transform: translateY(40px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vert-move-4-up {
+    -webkit-animation: mover4 4s infinite alternate;
+    animation: mover4 4s infinite alternate;
+}
+
+@-webkit-keyframes mover4 {
+    0% {
+        transform: translateY(4px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover4 {
+    0% {
+        transform: translateY(80px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vert-move-6-up {
+    -webkit-animation: mover6 6s infinite alternate;
+    animation: mover6 6s infinite alternate;
+}
+
+@-webkit-keyframes mover6 {
+    0% {
+        transform: translateY(6px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover6 {
+    0% {
+        transform: translateY(120px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vert-move-8-up {
+    -webkit-animation: mover8 8s infinite alternate;
+    animation: mover8 8s infinite alternate;
+}
+
+@-webkit-keyframes mover8 {
+    0% {
+        transform: translateY(8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover8 {
+    0% {
+        transform: translateY(160px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vert-move-10-up {
+    -webkit-animation: mover10 10s infinite alternate;
+    animation: mover10 10s infinite alternate;
+}
+
+@-webkit-keyframes mover10 {
+    0% {
+        transform: translateY(10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover10 {
+    0% {
+        transform: translateY(200px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vert-move-12-up {
+    -webkit-animation: mover12 12s infinite alternate;
+    animation: mover12 12s infinite alternate;
+}
+
+@-webkit-keyframes mover12 {
+    0% {
+        transform: translateY(12px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover12 {
+    0% {
+        transform: translateY(240px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vert-move-14-up {
+    -webkit-animation: mover14 14s infinite alternate;
+    animation: mover14 14s infinite alternate;
+}
+
+@-webkit-keyframes mover14 {
+    0% {
+        transform: translateY(14px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover14 {
+    0% {
+        transform: translateY(280px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vert-move-16-up {
+    -webkit-animation: mover16 16s infinite alternate;
+    animation: mover16 16s infinite alternate;
+}
+
+@-webkit-keyframes mover16 {
+    0% {
+        transform: translateY(16px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover16 {
+    0% {
+        transform: translateY(320px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vert-move-18-up {
+    -webkit-animation: mover18 18s infinite alternate;
+    animation: mover18 18s infinite alternate;
+}
+
+@-webkit-keyframes mover18 {
+    0% {
+        transform: translateY(18px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover18 {
+    0% {
+        transform: translateY(360px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* ******************************************************************************************************** */
+
+.vert-move-2-down {
+    -webkit-animation: mover2d 2s infinite alternate;
+    animation: mover2d 2s infinite alternate;
+}
+
+@-webkit-keyframes mover2d {
+    0% {
+        transform: translateY(-2px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover2d {
+    0% {
+        transform: translateY(-40px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vert-move-4-down {
+    -webkit-animation: mover4d 4s infinite alternate;
+    animation: mover4d 4s infinite alternate;
+}
+
+@-webkit-keyframes mover4d {
+    0% {
+        transform: translateY(-4px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover4d {
+    0% {
+        transform: translateY(-80px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vert-move-6-down {
+    -webkit-animation: mover6d 6s infinite alternate;
+    animation: mover6d 6s infinite alternate;
+}
+
+@-webkit-keyframes mover6d {
+    0% {
+        transform: translateY(-6px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover6d {
+    0% {
+        transform: translateY(-120px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vert-move-8-down {
+    -webkit-animation: mover8d 8s infinite alternate;
+    animation: mover8d 8s infinite alternate;
+}
+
+@-webkit-keyframes mover8d {
+    0% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover8d {
+    0% {
+        transform: translateY(-160px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vert-move-10-down {
+    -webkit-animation: mover10d 10s infinite alternate;
+    animation: mover10d 10s infinite alternate;
+}
+
+@-webkit-keyframes mover10d {
+    0% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover10d {
+    0% {
+        transform: translateY(-200px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vert-move-12-down {
+    -webkit-animation: mover12d 12s infinite alternate;
+    animation: mover12d 12s infinite alternate;
+}
+
+@-webkit-keyframes mover12d {
+    0% {
+        transform: translateY(-12px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover12d {
+    0% {
+        transform: translateY(-240px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vert-move-14-down {
+    -webkit-animation: mover14d 14s infinite alternate;
+    animation: mover14d 14s infinite alternate;
+}
+
+@-webkit-keyframes mover14d {
+    0% {
+        transform: translateY(-14px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover14d {
+    0% {
+        transform: translateY(-280px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vert-move-16-down {
+    -webkit-animation: mover16d 16s infinite alternate;
+    animation: mover16d 16s infinite alternate;
+}
+
+@-webkit-keyframes mover16d {
+    0% {
+        transform: translateY(-16px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover16d {
+    0% {
+        transform: translateY(-320px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.vert-move-18-down {
+    -webkit-animation: mover18d 18s infinite alternate;
+    animation: mover18d 18s infinite alternate;
+}
+
+@-webkit-keyframes mover18d {
+    0% {
+        transform: translateY(-18px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover18d {
+    0% {
+        transform: translateY(-360px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
