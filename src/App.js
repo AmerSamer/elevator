@@ -10,18 +10,19 @@ function App() {
     <>
       <ElevatorProvider>
         <div className="text-center">
-          <div id="app-main" className=' row w-75 text-center'>
-            <div className='col-1 fw-bold '>
-              <p>9th</p>
-              <p>8th</p>
-              <p>7th</p>
-              <p>6th</p>
-              <p>5th</p>
-              <p>4th</p>
-              <p>3rd</p>
-              <p>2nd</p>
-              <p>1st</p>
-              <p>0th</p>
+          <div className='mt-3'><h1>Elevator Exercise</h1> </div>
+          <div id="app-main" className='row w-75 text-center'>
+            <div className='col-1 fw-bold mt-5'>
+              <p className='mb-4'>9th</p>
+              <p className='mb-4'>8th</p>
+              <p className='mb-4'>7th</p>
+              <p className='mb-4'>6th</p>
+              <p className='mb-4'>5th</p>
+              <p className='mb-4'>4th</p>
+              <p className='mb-4'>3rd</p>
+              <p className='mb-4'>2nd</p>
+              <p className='mb-4'>1st</p>
+              <p className='mb-4'>0th</p>
             </div>
             <div className='col-1'>
               <Elevator attr={0} />
